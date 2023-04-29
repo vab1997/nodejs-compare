@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import CalendarPicker from '@/components/CalendarPicker'
 
 const getArrayNumber = ({ length }) => Array.from({ length }, (_, i) => i + 1)
 
@@ -11,19 +12,14 @@ export default function CounterDatePicker () {
 
   const arrayCountDate = getArrayNumber({ length: countDate })
 
-  const handleDate = (e, key) => {
-    const { value } = e.target
-    const dateValue = value.split('-').join('')
-
+  const handleDates = ({ formatDate, label }) => {
     const newArrayListDate = dates.map((date) => {
-      if (Number(Object.keys(date)[0]) === key) return { [key]: dateValue }
+      if (Number(Object.keys(date)[0]) === label) return { [label]: formatDate }
       return date
     })
 
     setDate(newArrayListDate)
   }
-
-  console.log(dates.flatMap(date => Object.values(date)).filter(date => date !== '').join('-'))
 
   return (
     <div className='flex flex-col items-center justify-center gap-4'>
@@ -38,10 +34,7 @@ export default function CounterDatePicker () {
 
       <div className='flex items-center justify-center gap-4'>
         {arrayCountDate.map(key => (
-          <div key={key}>
-            <label className='text-white'>label {key}</label>
-            <input type='date' onChange={e => handleDate(e, key)} />
-          </div>
+          <CalendarPicker key={key} label={key} handleDates={handleDates} />
         ))}
       </div>
 
