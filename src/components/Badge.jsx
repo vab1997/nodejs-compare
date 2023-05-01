@@ -1,6 +1,10 @@
+'use client'
+
 import { getDateFormated } from '@/utils'
 
-const COLORS = ['#3B82F6', '#EF4444', '#8B5CF6']
+const COLORS = ['#f43f5e', '#8b5cf6', '#0ea5e9']
+
+const formatNumber = (number) => new Intl.NumberFormat().format(number)
 
 export default function Badge ({ dates, totalDownload }) {
   const arrayDates = dates.split('-')
@@ -8,7 +12,7 @@ export default function Badge ({ dates, totalDownload }) {
     <>
       {arrayDates.map((date, index) => (
         <span key={date} style={{ background: COLORS[index] }} className='text-center font-medium px-2.5 py-0.5 rounded text-white'>
-          {getDateFormated(date)}: {totalDownload[index]}
+          {getDateFormated(date)}: <span className='text-bold'>{formatNumber(totalDownload[index])}</span>
         </span>
       ))}
     </>
