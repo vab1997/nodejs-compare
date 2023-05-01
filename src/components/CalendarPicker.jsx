@@ -49,9 +49,6 @@ export default function CalendarPicker ({ handleDates, label }) {
   }
 
   return (
-    <div className='flex items-center justify-center gap-2 '>
-      <p className='text-sm md:text-md text-center text-transparent w-full'>Date {label}:</p>
-      <Datepicker classNames='w-full' options={options} onChange={handleChange} show={show} setShow={handleClose} />
-    </div>
+    <Datepicker classNames='w-full' options={options} onChange={handleChange} show={show} setShow={handleClose} />
   )
 }
