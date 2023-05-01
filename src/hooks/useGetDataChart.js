@@ -1,12 +1,13 @@
 import { NODE_VERSIONS, COUNTRYS, getDateFormated } from '@/utils'
 
-const getDataLineChart = ({ objectData, ArrayDates }) => {
+const getDataLineChart = ({ objectData, listDates }) => {
   const dataLineChart = []
+  const nodeVersionAsc = [...NODE_VERSIONS].reverse()
 
-  NODE_VERSIONS.forEach(version => {
+  nodeVersionAsc.forEach(version => {
     let object = { version }
 
-    ArrayDates.forEach((date, index) => {
+    listDates.forEach((date, index) => {
       const dateFormat = getDateFormated(date)
       const dataVersion = objectData[index].lastVersion[version] ? objectData[index].lastVersion[version] : 0
       object = { ...object, [dateFormat]: dataVersion }
@@ -18,10 +19,10 @@ const getDataLineChart = ({ objectData, ArrayDates }) => {
   return dataLineChart
 }
 
-const getDataDonutChart = ({ objectData, ArrayDates }) => {
+const getDataDonutChart = ({ objectData, listDates }) => {
   return objectData.map((data, index) => {
     const { country } = data
-    const dateFormat = getDateFormated(ArrayDates[index])
+    const dateFormat = getDateFormated(listDates[index])
 
     const dataCountry = Object.entries(country).splice(0, 10).map(([key, value]) => {
       const countryName = COUNTRYS[key] ? COUNTRYS[key] : key
@@ -33,10 +34,10 @@ const getDataDonutChart = ({ objectData, ArrayDates }) => {
 }
 
 export default async function useGetDataChart ({ dates }) {
-  const ArrayDates = dates.split('-')
+  const listDates = dates.split('-')
 
-  const getDataFile = await Promise.all(
-    ArrayDates.map(date => import(`../../data/${date}.json`))
+  const dataFiles = await Promise.all(
+    listDates.map(date => import(`../../data/${date}.json`))
   ).then(data => {
     return data.map(data => {
       const { totalDownload, country, lastVersion } = data
@@ -45,9 +46,9 @@ export default async function useGetDataChart ({ dates }) {
     })
   })
 
-  const dataLineChart = getDataLineChart({ objectData: getDataFile, ArrayDates })
-  const dataDonutChart = getDataDonutChart({ objectData: getDataFile, ArrayDates })
-  const totalDownload = getDataFile.map(data => data.totalDownload)
+  const dataLineChart = getDataLineChart({ objectData: dataFiles, listDates })
+  const dataDonutChart = getDataDonutChart({ objectData: dataFiles, listDates })
+  const totalDownload = dataFiles.map(data => data.totalDownload)
 
   return { totalDownload, dataLineChart, dataDonutChart }
 }
