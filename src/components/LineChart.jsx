@@ -6,7 +6,7 @@ export default function LineChartComponent ({ dataLineChart }) {
   const categories = Object.keys(dataLineChart[0]).filter(key => key !== 'version')
 
   return (
-    <div className='flex items-center justify-center max-w-6xl w-full'>
+    <div className='flex items-center justify-center px-2 max-w-6xl w-full'>
       <Card className=' bg-transparent text-white'>
         <Title className='text-white font-medium'>Downloads count in the days
           {categories.map((date, index) => (
@@ -18,7 +18,7 @@ export default function LineChartComponent ({ dataLineChart }) {
           data={dataLineChart}
           index='version'
           categories={categories}
-          colors={['blue', 'red', 'violet']}
+          colors={['rose', 'violet', 'sky']}
           yAxisWidth={50}
         />
       </Card>
