@@ -1,0 +1,27 @@
+name: Download data Nodejs for today 
+
+on:
+  workflow_dispatch:
+  
+  schedule:
+    - cron: '10 14 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.26.0
+          run_install: true
+      - run: |
+          pnpm run data:download
+          git config user.name vab1997
+          git config user.email victorbejas97@gmail.com
+          git add .
+          git commit -m "[bot] update data download Nodejs database"
+          git push origin main
