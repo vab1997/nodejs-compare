@@ -1,5 +1,5 @@
 import TimeAgo from '@/components/TimeAgo'
-import fileUpdate from '../../data/infoUpdate.json'
+import fileUpdate from '../../db/infoUpdate.json'
 import { getDateFormated } from '@/utils/index'
 
 export default function InfoUpdate () {
