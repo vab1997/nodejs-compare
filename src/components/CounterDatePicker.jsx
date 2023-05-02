@@ -28,8 +28,9 @@ export default function CounterDatePicker () {
         <select
           className='bg-transparent outline-none focus:border-[#8CC84B] border border-white/10 hover:border-[#8CC84B] rounded-full text-white md:text-lg px-2 py-[6px] md:py-[9px]'
           onChange={(e) => setCountDate(e.target.value)}
+          value='0'
         >
-          <option selected disabled className='text-white bg-[#13111C]' value='0'>Select</option>
+          <option disabled className='text-white bg-[#13111C]' value='0'>Select</option>
           <option className='text-white bg-[#13111C]' value='1'>One date</option>
           <option className='text-white bg-[#13111C]' value='2'>Two dates</option>
           <option className='text-white bg-[#13111C]' value='3'>Three dates</option>
