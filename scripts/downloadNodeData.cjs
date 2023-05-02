@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import filenamesData from './filenamesData.json' assert { type: 'json' }
 
-import { preparedData } from './preparedData.js'
+import { preparedData } from './preparedData.mjs'
 
 const DB_PATH = path.join(process.cwd(), './data/')
 const URLDATA = 'https://storage.googleapis.com/access-logs-summaries-nodejs/nodejs.org-access.log.'

@@ -37,7 +37,7 @@ export default async function useGetDataChart ({ dates }) {
   const listDates = dates.split('-')
 
   const dataFiles = await Promise.all(
-    listDates.map(date => import(`../../data/${date}.json`))
+    listDates.map(date => import(`../../db/${date}.json`))
   ).then(data => {
     return data.map(data => {
       const { totalDownload, country, lastVersion } = data
