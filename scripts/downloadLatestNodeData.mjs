@@ -16,10 +16,12 @@ async function downloadNodeDataForToday () {
     ? { lastModified: +new Date(), dateUpdated: dateLastest }
     : { lastModified: +new Date(), dateUpdated: filenamesData.filenameData.at(-1) }
 
+  const checkDataExist = filenamesData.filenameData.includes(dateLastest)
+
   await writeFile(`${DB_PATH}/infoUpdate.json`, JSON.stringify(lastDateAvailable, null, 0), 'utf-8')
 
-  if (resData.status !== 200) {
-    console.log('No data for today')
+  if (resData.status !== 200 || checkDataExist) {
+    console.log('No data for save')
     return
   }
 
