@@ -10,7 +10,7 @@ export default async function PageLineChart ({ params }) {
   const { totalDownload, dataLineChart, dataDonutChart, dataNotFound } = await useGetDataChart({ dates })
 
   return (
-    <main className='flex flex-col items-center justify-center py-8 md:py-12 w-full'>
+    <section className='flex flex-col items-center justify-center py-8 md:py-12 w-full'>
       <div className='flex flex-col items-center justify-center max-w-6xl w-full'>
         <header className='flex justify-between gap-8 w-full px-2 py-6 mb-4'>
           <a href='/' className='flex gap-2 items-center text-md font-bold text-white hover:underline md:text-lg hover:opacity-80'>
@@ -37,6 +37,6 @@ export default async function PageLineChart ({ params }) {
             </section>
             )}
       </div>
-    </main>
+    </section>
   )
 }
