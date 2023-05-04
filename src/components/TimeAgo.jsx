@@ -35,5 +35,5 @@ export default function TimeAgo ({ timestamp }) {
     month: 'long', day: 'numeric'
   }).format(date)
 
-  return <time className='border-b-[1px] border-dashed border-[#8CC84B]' title={formattedDate} dateTime={formattedDate}>{timeago}</time>
+  return <time suppressHydrationWarning className='border-b-[1px] border-dashed border-[#8CC84B]' title={formattedDate} dateTime={formattedDate}>{timeago}</time>
 }
