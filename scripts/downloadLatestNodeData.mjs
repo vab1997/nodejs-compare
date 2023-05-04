@@ -18,8 +18,6 @@ async function downloadNodeDataForToday () {
 
   const checkDataExist = filenamesData.filenameData.includes(dateLastest)
 
-  await writeFile(`${DB_PATH}/infoUpdate.json`, JSON.stringify(lastDateAvailable, null, 0), 'utf-8')
-
   if (resData.status !== 200 || checkDataExist) {
     console.log('No data for save')
     return
@@ -34,6 +32,7 @@ async function downloadNodeDataForToday () {
   const dataToSave = await preparedData({ total, country, version })
 
   console.log('writing to db...')
+  await writeFile(`${DB_PATH}/infoUpdate.json`, JSON.stringify(lastDateAvailable, null, 0), 'utf-8')
   await writeFile(`${DB_PATH}/${dateLastest}.json`, JSON.stringify(dataToSave, null, 0), 'utf-8')
   await writeFile(`${PATH_FILENAME}/filenamesData.json`, JSON.stringify({ filenameData }, null, 0), 'utf-8')
   console.log('data saved')
