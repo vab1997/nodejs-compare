@@ -7,7 +7,7 @@ import useGetDataChart from '@/hooks/useGetDataChart'
 
 export default async function PageLineChart ({ params }) {
   const { dates } = params
-  const { totalDownload, dataLineChart, dataDonutChart } = await useGetDataChart({ dates })
+  const { totalDownload, dataLineChart, dataDonutChart, dataNotFound } = await useGetDataChart({ dates })
 
   return (
     <main className='flex flex-col items-center justify-center py-8 md:py-12 w-full'>
@@ -20,14 +20,22 @@ export default async function PageLineChart ({ params }) {
           <Stars />
         </header>
 
-        <section className='flex flex-col items-center justify-center gap-16 w-full'>
-          <div className='flex flex-col justify-content items-center gap-2 md:flex-row'>
-            <h1 className='text-white font-bold text-lg md:text-xl'>Total downloads by date of all versions:</h1>
-            <BadgeComponent dates={dates} totalDownload={totalDownload} />
-          </div>
-          <LineChartComponent dataLineChart={dataLineChart} />
-          <DonutChartComponent dataDonutChart={dataDonutChart} />
-        </section>
+        {dataNotFound
+          ? (
+            <span className='text-red-500 font-bold text-center text-lg md:text-xl border border-red-500/30 px-8 py-4 rounded-lg'>
+              {dataNotFound}
+            </span>
+            )
+          : (
+            <section className='flex flex-col items-center justify-center gap-16 w-full'>
+              <div className='flex flex-col justify-content items-center gap-2 md:flex-row'>
+                <h1 className='text-white font-bold text-lg md:text-xl'>Total downloads by date of all versions:</h1>
+                <BadgeComponent dates={dates} totalDownload={totalDownload} />
+              </div>
+              <LineChartComponent dataLineChart={dataLineChart} />
+              <DonutChartComponent dataDonutChart={dataDonutChart} />
+            </section>
+            )}
       </div>
     </main>
   )

@@ -44,7 +44,16 @@ export default async function useGetDataChart ({ dates }) {
       const dataResponse = { totalDownload, country, lastVersion }
       return dataResponse
     })
+  }).catch(error => {
+    return error
   })
+
+  const dateNotFound = dataFiles?.message?.split('/')[1].split('.')[0]
+  const dataNotFound = dataFiles?.message?.startsWith('Cannot find module')
+    ? `Data not found: ${getDateFormated(dateNotFound)}`
+    : null
+
+  if (dataNotFound) return { dataNotFound }
 
   const dataLineChart = getDataLineChart({ objectData: dataFiles, listDates })
   const dataDonutChart = getDataDonutChart({ objectData: dataFiles, listDates })
