@@ -10,7 +10,7 @@ export default function Header () {
         </span>
       </h1>
       <h2 className='text-lg font-medium text-center text-white lg:text-4xl md:text-2xl'>
-        Compare Nodejs download counts over time
+        Show and compare Nodejs download counts over time
       </h2>
     </header>
   )
