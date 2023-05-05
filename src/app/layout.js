@@ -3,7 +3,7 @@ import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import InfoUpdate from '@/components/InfoUpdate'
 
-const URL_WEB = 'http://localhost:3000'
+const URL_WEB = 'https://nodejs-compare.vercel.app'
 const title = 'Node.js | compare downloads Nodejs'
 
 export const metadata = {
