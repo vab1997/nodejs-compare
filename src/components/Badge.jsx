@@ -1,10 +1,8 @@
 'use client'
 
-import { getDateFormated } from '@/utils'
+import { getDateFormated, formatNumber } from '@/utils'
 
 const COLORS = ['#f43f5e', '#8b5cf6', '#0ea5e9']
-
-const formatNumber = (number) => new Intl.NumberFormat().format(number)
 
 export default function Badge ({ dates, totalDownload }) {
   const arrayDates = dates.split('-')
