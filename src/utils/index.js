@@ -78,6 +78,10 @@ export const COUNTRYS = {
   GR: 'Greece'
 }
 
+export const getArrayNumber = ({ length }) => Array.from({ length }, (_, i) => i + 1)
+
+export const formatNumber = (number) => new Intl.NumberFormat().format(number).toString()
+
 export function getDateFormated (date) {
   if (date === undefined) return ''
 
@@ -87,4 +91,37 @@ export function getDateFormated (date) {
 
   const formatDate = day ? `${year}/${month}/${day}` : `${year}/${month}`
   return formatDate
+}
+
+export const getDataLineChart = ({ objectData, listDates }) => {
+  const dataLineChart = []
+  const nodeVersionAsc = [...NODE_VERSIONS].reverse()
+
+  nodeVersionAsc.forEach(version => {
+    let object = { version }
+
+    listDates.forEach((date, index) => {
+      const dateFormat = getDateFormated(date)
+      const dataVersion = objectData[index].lastVersion[version] ? objectData[index].lastVersion[version] : 0
+      object = { ...object, [dateFormat]: dataVersion }
+    })
+
+    dataLineChart.push(object)
+  })
+
+  return dataLineChart
+}
+
+export const getDataDonutChart = ({ objectData, listDates }) => {
+  return objectData.map((data, index) => {
+    const { country } = data
+    const dateFormat = getDateFormated(listDates[index])
+
+    const dataCountry = Object.entries(country).splice(0, 10).map(([key, value]) => {
+      const countryName = COUNTRYS[key] ? COUNTRYS[key] : key
+      return { country: countryName, download: value }
+    })
+
+    return { date: dateFormat, dataCountry }
+  })
 }
