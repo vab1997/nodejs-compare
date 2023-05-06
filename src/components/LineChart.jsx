@@ -1,6 +1,7 @@
 'use client'
 
 import { Card, Title, LineChart } from '@tremor/react'
+import { formatNumber } from '@/utils'
 
 export default function LineChartComponent ({ dataLineChart }) {
   const categories = Object.keys(dataLineChart[0]).filter(key => key !== 'version')
@@ -19,6 +20,7 @@ export default function LineChartComponent ({ dataLineChart }) {
           index='version'
           categories={categories}
           colors={['rose', 'violet', 'sky']}
+          valueFormatter={formatNumber}
           yAxisWidth={50}
         />
       </Card>

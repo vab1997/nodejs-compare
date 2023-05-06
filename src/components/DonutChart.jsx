@@ -1,7 +1,8 @@
 'use client'
 
 import { Card, Title, DonutChart } from '@tremor/react'
-import CalendarIcon from './CalendarIcon'
+import CalendarIcon from '@/components/CalendarIcon'
+import { formatNumber } from '@/utils'
 
 export default function DonutChartComponent ({ dataDonutChart }) {
   return (
@@ -21,6 +22,7 @@ export default function DonutChartComponent ({ dataDonutChart }) {
               index='country'
               showLabel='true'
               label='Top 10 downloads'
+              valueFormatter={formatNumber}
               colors={['red', 'violet', 'indigo', 'rose', 'cyan', 'amber', 'purple', 'orange', 'fuchsia', 'blue']}
             />
           </Card>
