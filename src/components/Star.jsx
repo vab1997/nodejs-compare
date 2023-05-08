@@ -1,6 +1,14 @@
 import StarIcon from '@/components/StarIcon'
 
-export default function Stars ({ stars = '2.9K' }) {
+const fetchGitHubStars = () => {
+  return fetch('https://api.github.com/repos/vab1997/nodejs-compare')
+    .then(res => res.json())
+    .then(response => response.stargazers_count)
+}
+
+export default async function Stars () {
+  const stars = await fetchGitHubStars()
+
   return (
     <a
       className='flex items-center justify-center h-full transition-colors bg-transparent border border-white/10 rounded-md hover:border-[#8CC84B]'
