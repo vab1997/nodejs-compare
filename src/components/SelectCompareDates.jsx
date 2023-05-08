@@ -9,7 +9,7 @@ export default function SelectCompareDates () {
 
   return (
     <section className='flex flex-col items-center justify-center gap-4'>
-      <h2 className='text-2xl py-1 mb-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#8CC84B] to-[#e0dbf2] sm:text-4xl'>
+      <h2 className='text-xl py-1 mb-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#8CC84B] to-[#e0dbf2] w-full text-center md:text-start lg:text-3xl'>
         Select type and number of dates to compare
       </h2>
 
