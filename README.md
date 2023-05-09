@@ -1,6 +1,6 @@
 ## Nodejs compare - Show and compare Nodejs download counts over time
 
-(![Alt text](public/og.png)
+![Alt text](public/og.png)
 
 Compare Nodejs is a website that allows you to show and compare the downloads of Nodejs in different countries and different days or months.
 
