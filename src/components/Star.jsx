@@ -1,9 +1,9 @@
 import StarIcon from '@/components/StarIcon'
 
-const fetchGitHubStars = () => {
-  return fetch('https://api.github.com/repos/vab1997/nodejs-compare')
-    .then(res => res.json())
-    .then(response => response.stargazers_count)
+const fetchGitHubStars = async () => {
+  const res = await fetch('https://api.github.com/repos/vab1997/nodejs-compare')
+  const response = await res.json()
+  return response.stargazers_count
 }
 
 export default async function Stars () {
