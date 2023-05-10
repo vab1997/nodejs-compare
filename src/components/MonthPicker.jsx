@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
+// Data available from 03/2021
 const MONTH = {
   '01': 'January',
   '02': 'February',
@@ -37,7 +38,6 @@ export default function MonthPicker ({ label, handleDates }) {
 
   return (
     <div className='flex items-center justify-center gap-2'>
-      <p className='text-transparent text-sm lg:text-md text-center w-full'>Date {label}:</p>
       <div className='flex'>
         <select
           className='bg-transparent border border-white/10 hover:border-node px-2 py-1.5 md:py-2.5 outline-none rounded-l-full text-md md:text-lg text-white'
