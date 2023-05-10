@@ -1,5 +1,3 @@
-'use client'
-
 import { getDateFormated, formatNumber } from '@/utils'
 
 const COLORS = ['#f43f5e', '#8b5cf6', '#0ea5e9']

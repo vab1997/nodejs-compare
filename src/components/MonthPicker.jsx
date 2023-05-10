@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 
 // Data available from 03/2021

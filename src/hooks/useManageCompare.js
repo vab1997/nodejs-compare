@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 import { COMPARE_OPTIONS } from '@/utils/constants'
 import { getArrayNumber } from '@/utils'
