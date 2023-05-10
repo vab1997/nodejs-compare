@@ -1,11 +1,22 @@
 'use client'
 
-import { useState } from 'react'
-import PickerDate from '@/components/PickerDate'
-import { COMPARE_OPTIONS } from '@/utils/constants'
+import Link from 'next/link'
+import Select from '@/components/Select'
+import useManageCompare from '@/hooks/useManageCompare'
+import { COMPARE_OPTIONS, AMOUNT_OF_DATES } from '@/utils/constants'
 
 export default function SelectCompareDates () {
-  const [compareOption, setCompareOption] = useState(COMPARE_OPTIONS[0])
+  const {
+    typeCompare,
+    quantityDate,
+    renderQuantityDates,
+    isVisibleCompare,
+    redirectToCompare,
+    handleTypeCompare,
+    handleQuantityDate,
+    RenderComponentPicker,
+    handleDates
+  } = useManageCompare()
 
   return (
     <section className='flex flex-col items-center justify-center gap-4'>
@@ -13,20 +24,33 @@ export default function SelectCompareDates () {
         Select type and number of dates to compare
       </h2>
 
-      <div className='flex flex-col items-center justify-center gap-2 md:flex-row'>
-        <label className='text-lg text-white'>Pick comparation</label>
-        <select
-          className='bg-transparent outline-none focus:border-[#8CC84B] border border-white/10 hover:border-[#8CC84B] rounded-full text-white md:text-lg px-2 py-[6px] md:py-[9px]'
-          onChange={(e) => setCompareOption(e.target.value)}
-          value={compareOption}
-        >
-          {COMPARE_OPTIONS.map((option) => (
-            <option className='text-white bg-[#13111C]' key={option} value={option}>{option}</option>
-          ))}
-        </select>
+      <Select label='Pick comparation' setValue={handleTypeCompare} value={typeCompare}>
+        {COMPARE_OPTIONS.map((option) => (
+          <option className='text-white bg-[#13111C]' key={option} value={option}>{option}</option>
+        ))}
+      </Select>
+
+      <Select label='Pick number' setValue={handleQuantityDate} value={quantityDate}>
+        <option disabled className='text-white bg-[#13111C]' value='0'>Select</option>
+        {Object.entries(AMOUNT_OF_DATES).map(([key, value]) => (
+          <option className='text-white bg-[#13111C]' key={key} value={value}>{key}</option>
+        ))}
+      </Select>
+
+      <div className='flex flex-col items-center justify-center gap-4 mt-4 md:flex-row'>
+        {renderQuantityDates.map(key => (
+          <RenderComponentPicker key={key} label={key} handleDates={handleDates} />
+        ))}
       </div>
 
-      <PickerDate compareOption={compareOption} />
+      {isVisibleCompare && (
+        <Link
+          className='bg-transparent outline-none focus:border-[#8CC84B] border border-white/10 hover:border-[#8CC84B] rounded-full text-white text-center md:text-lg px-6 py-[6px] md:py-[9px]'
+          href={redirectToCompare}
+        >
+          Compare
+        </Link>
+      )}
     </section>
   )
 }
