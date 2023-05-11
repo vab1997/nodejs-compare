@@ -25,7 +25,7 @@ export default function Footer () {
             </a>
             . The site is open source and you can find it on {' '}
             <a
-              href='https://github.com/vab1997/nodejs-download.app'
+              href='https://github.com/vab1997/nodejs-compare'
               target='_blank'
               rel='noreferrer'
               className='text-white font-medium hover:text-[#8CC84B] hover:underline hover:underline-offset-4'
